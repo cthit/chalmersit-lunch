@@ -62,23 +62,30 @@ class Chalmrest
         id = category["id"]
 
         [
-          { 
-            title: category["name"], 
-            id: id, 
-            lang: 'sv',
-            summary: strip_invalid_chars(recipe["displayNames"][0]["displayName"]),
-            allergens: allergens 
-          },
-          { 
-            title: category["nameEnglish"], 
-            id: id,
-            lang: 'en',
-            summary: strip_invalid_chars(recipe["displayNames"][1]["displayName"]),
-            allergens: allergens
-          }
+          make_meal(
+            category["name"], 
+            'sv', 
+            strip_invalid_chars(recipe["displayNames"][0]["displayName"]), 
+            allergens
+          ),
+          make_meal(
+            category["nameEnglish"], 
+            'en', 
+            strip_invalid_chars(recipe["displayNames"][1]["displayName"]),
+            allergens
+          )
         ]
       end
     end
+  end
+
+  def make_meal(title, lang, summary, allergens)
+    { 
+      title: title,
+      lang: lang,
+      summary: summary,
+      allergens: allergens 
+    }
   end
 
   def strip_invalid_chars(meal)
