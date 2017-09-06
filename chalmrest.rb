@@ -5,7 +5,7 @@ class Chalmrest
   class << self
     include JSON
     include OpenURI
-    
+
     CHALMERS_RESTAURANTS = [
     {name: "Linsen", id: 33, location: "Johanneberg"},
     {name: "Kårrestaurangen", id: 5, location: "Johanneberg"},
@@ -14,7 +14,7 @@ class Chalmrest
     {name: "L's Resto", id: 32, location: "Lindholmen"},
     {name: "Kokboken", id: 35, location: "Lindholmen"}
   ]
-  
+
   # Allergies supported in API
   # https://chalmerskonferens.se/en/api/
   ALLERGY_IDS = {
@@ -25,66 +25,66 @@ class Chalmrest
     5 => "nuts",
     6 => "fish"
   }
-  
+
   def build_chalmrest_url(restaurant_id)
     "https://carboncloudrestaurantapi.azurewebsites.net/api/menuscreen/getdataday?restaurantid=#{restaurant_id}"
   end
-  
+
   def meals
     @meals ||= fetch_data
   end
-  
-  private 
-  
+
+  private
+
   def fetch_data
     CHALMERS_RESTAURANTS.map do |resturant|
-      { 
-      name: resturant[:name], 
-      meals: fetch_meals_for_id(resturant[:id]), 
-      location: resturant[:location] 
+      {
+      name: resturant[:name],
+      meals: {en: [], sv:[]}.merge(fetch_meals_for_id(resturant[:id])),
+      location: resturant[:location]
       }
     end
   end
 
   def fetch_meals_for_id(id)
     url = build_chalmrest_url(id)
-    
+
     transform_meals JSON.parse(open(url).read)
   end
 
   def transform_meals(json)
     return if json["recipeCategories"].nil?
-    
+
     json["recipeCategories"].flat_map do |category|
-      
+
       category["recipes"].flat_map do |recipe|
         allergens = get_allergens(recipe["allergens"])
         id = category["id"]
 
         [
           make_meal(
-            category["name"], 
-            'sv', 
-            strip_invalid_chars(recipe["displayNames"][0]["displayName"]), 
+            category["name"],
+            :sv,
+            strip_invalid_chars(recipe["displayNames"][0]["displayName"]),
             allergens
           ),
           make_meal(
-            category["nameEnglish"], 
-            'en', 
+            category["nameEnglish"],
+            :en,
             strip_invalid_chars(recipe["displayNames"][1]["displayName"]),
             allergens
           )
         ]
       end
-    end
+    end.group_by{ |m| m[:lang] }
   end
 
   def make_meal(title, lang, summary, allergens)
-    { 
+    {
       title: title,
       lang: lang,
       summary: summary,
-      allergens: allergens 
+      allergens: allergens
     }
   end
 
