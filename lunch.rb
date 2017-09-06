@@ -10,9 +10,9 @@ class Lunch
 
     def today_filter_locale(locale)
       today.map do |rest|
-        rest = rest.dup
-        rest[:meals] = rest[:meals].select { |m| m[:lang] == locale }
-        rest
+        rest.merge({
+          meals: rest[:meals].select { |m| m[:lang] == locale }
+        })
       end
     end
   end
