@@ -53,7 +53,7 @@ class Chalmrest
   end
 
   def transform_meals(json)
-    return if json["recipeCategories"].nil?
+    return {} if json["recipeCategories"].nil?
 
     json["recipeCategories"].flat_map do |category|
 
