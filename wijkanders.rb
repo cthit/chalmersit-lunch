@@ -34,10 +34,13 @@ class Wijkanders
     end
 
     def parse_meals(menu)
-      paragraphs = menu.css('.post-content > p').drop(6).take(5)
+      paragraphs = menu.css('.post-content > p')
 
       weekday = today_weekday
-      meals_today = paragraphs.select{ |p| p.text =~ /#{weekday}/ }.first.text.split(/\n/).drop(1)
+      meals_today = paragraphs.select{ |p| p.text =~ /#{weekday}/ }.first
+      return {} if meals_today.nil?
+
+      meals_today = meals_today.text.split(/\n/).drop(1)
 
       meals_today.each_slice(2).flat_map do |sv_food, en_food|
         title = classify_food(sv_food)
