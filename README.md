@@ -1,6 +1,6 @@
 # chalmersit-lunch fetcher
 
-How to set up:
+## Development setup:
 
 ```bash
   gem install bundler
