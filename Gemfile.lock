@@ -8,6 +8,8 @@ GEM
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     rack (2.0.3)
+    rack-cache (1.7.1)
+      rack (>= 0.4)
     rack-protection (2.0.0)
       rack
     sinatra (2.0.0)
@@ -29,6 +31,7 @@ PLATFORMS
 
 DEPENDENCIES
   nokogiri
+  rack-cache
   sinatra
   sinatra-contrib
 
