@@ -9,7 +9,7 @@ class Einstein
     EINSTEIN_URL = "http://butlercatering.se/print/6"
 
     def meals
-      @meals ||= fetch_data
+      fetch_data
     end
 
     private

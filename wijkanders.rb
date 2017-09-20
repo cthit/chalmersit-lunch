@@ -13,7 +13,7 @@ class Wijkanders
     MEAT_LABEL = 'KÖTT:'
 
     def meals
-      @meals ||= fetch_data
+      fetch_data
     end
 
     private
