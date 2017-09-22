@@ -89,7 +89,7 @@ class Chalmrest
   end
 
   def strip_invalid_chars(meal)
-    meal.gsub '”', '"'
+    meal.gsub /[”“]/, '"'
   end
 
   def get_allergens(allergens_entry)
