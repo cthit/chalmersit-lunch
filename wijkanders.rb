@@ -31,6 +31,9 @@ class Wijkanders
       else
         @meals = [{ name: title, meals: {en: [], sv:[]}.merge(meals), location: "Johanneberg" }]
       end
+
+    rescue OpenURI::HTTPError
+      return []
     end
 
     def parse_meals(menu)

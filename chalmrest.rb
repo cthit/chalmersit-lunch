@@ -50,6 +50,8 @@ class Chalmrest
     url = build_chalmrest_url(id)
 
     transform_meals JSON.parse(open(url).read)
+  rescue OpenURI::HTTPError
+    return {}
   end
 
   def transform_meals(json)
