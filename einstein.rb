@@ -75,7 +75,7 @@ class Einstein
       "veg"
     elsif food.downcase =~ /fisk|torsk|spätta|skaldjur|lubb|kolja|lax/
       "fish"
-    elsif food.downcase =~ /kött|fläsk|färs|karr[eé]|kyckling|rev|biff/
+    elsif food.downcase =~ /kött|fläsk|färs|karr[eé]|kyckling|rev|biff|lamm/
       "meat"
     else
       "default"
