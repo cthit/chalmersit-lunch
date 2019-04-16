@@ -12,3 +12,15 @@ linsenToday
   wijkanders       = "http://www.wijkanders.se/restaurangen/"
   johannebergLunch = "https://chalmerskonferens.se/lunchmenyer-johanneberg/"
 lindholmenLunch = "https://chalmerskonferens.se/lunchmenyer-lindholmen/"
+
+Linsen
+
+Kårrestaurangen
+
+L's kitchen
+
+Express
+
+L's Resto
+
+Kokboken
