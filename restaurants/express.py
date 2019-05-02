@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, "./utils/")
 from menu  import Menu, MenuItem
 from scraper import Scaper
 
@@ -12,9 +14,14 @@ def get_veg():
     return scraper_path[2].find_all('tr')[1].td.div.string #returns the vegan alternative
 
 def get_express_menu():
-    return (
-        MenuItem("Express", get_express), 
-        MenuItem("Express-Vegan", get_veg)
-        )
+        menuItemList = ()
+        try:
+                menuItemList = (
+                        MenuItem("Express", get_express), 
+                        MenuItem("Express-Vegan", get_veg)
+                        )
+                return menuItemList
+        except:
+                return "Error!"
 
 express_menu = Menu("Express,", get_express_menu)
