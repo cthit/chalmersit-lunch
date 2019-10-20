@@ -39,7 +39,7 @@ class Chalmrest
       CHALMERS_RESTAURANTS.map do |restaurant|
         {
           name: restaurant[:name],
-          meals: fetch_restaurant_by_id(http, restaurant[:id]),
+          meals: {en: [], sv: []}.merge(fetch_restaurant_by_id(http, restaurant[:id])),
           location: restaurant[:location]
         }
       end
@@ -61,10 +61,6 @@ class Chalmrest
           startDate
           dishType {
             name
-          }
-          mealProvidingUnit {
-            mealProvidingUnitName
-            id
           }
         }
       }
@@ -93,11 +89,16 @@ class Chalmrest
   end
 
   def transform_meals(json)
-    return {} if json.nil?
+    return [] if json.nil?
 
     json.flat_map do |json|
       json["displayNames"].map do |meal|
-        make_meal(json["dishType"]["name"], meal["categoryName"] == "Swedish" ? :sv : :en, json["startDate"],  meal["name"])
+        make_meal(
+          json["dishType"]["name"],
+          meal["categoryName"] == "Swedish" ? :sv : :en,
+          json["startDate"],
+          meal["name"]
+        )
       end
     end
   end
