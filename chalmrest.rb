@@ -47,7 +47,7 @@ class Chalmrest
   end
 
   def fetch_restaurant_by_id(http, id)
-    searchDate = "2019-10-21"
+    searchDate = Date.today.to_s
     request = Net::HTTP::Post.new GQL_URI
     request['Content-Type'] = 'application/json'
     query = <<-GQL
