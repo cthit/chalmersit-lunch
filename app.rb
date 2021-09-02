@@ -18,6 +18,8 @@ end
 get '/' do
 	cache_today!
 
+	response['Access-Control-Allow-Origin'] = '*'
+
 	if params['locale']
 		json Lunch.today_filter_locale(params['locale'])
 	else
