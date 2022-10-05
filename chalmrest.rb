@@ -26,7 +26,7 @@ class Chalmrest
     6 => "fish"
   }
 
-  GQL_URI = URI.parse("https://heimdallprod.azurewebsites.net/graphql")
+  GQL_URI = URI.parse("https://plateimpact-heimdall.azurewebsites.net/graphql")
 
   def meals
     fetch_data
