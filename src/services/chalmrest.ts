@@ -42,7 +42,10 @@ const getRestaurantData = async (url: string, location: string) => {
   }
 };
 
-const format = (json, location: string) => {
+const format = (
+  json: { mealProvidingUnit: { mealProvidingUnitName: any } }[],
+  location: string
+) => {
   try {
     const formatted: restaurant = {
       name: json[0].mealProvidingUnit.mealProvidingUnitName,
@@ -58,8 +61,9 @@ const format = (json, location: string) => {
         lang: "en",
         date: item.startDate,
         summary: item.displayNames.find(
-          (element) =>
-            element.displayNameCategory.displayNameCategoryName == "English"
+          (element: {
+            displayNameCategory: { displayNameCategoryName: string };
+          }) => element.displayNameCategory.displayNameCategoryName == "English"
         ).dishDisplayName,
       });
       formatted.meals.sv.push({
@@ -67,8 +71,9 @@ const format = (json, location: string) => {
         lang: "sv",
         date: item.startDate,
         summary: item.displayNames.find(
-          (element) =>
-            element.displayNameCategory.displayNameCategoryName == "Swedish"
+          (element: {
+            displayNameCategory: { displayNameCategoryName: string };
+          }) => element.displayNameCategory.displayNameCategoryName == "Swedish"
         ).dishDisplayName,
       });
     });
