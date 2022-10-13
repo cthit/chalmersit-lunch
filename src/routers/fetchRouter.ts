@@ -1,9 +1,9 @@
 import express, { Router } from "express";
-import { fetchChalmrest } from "../services/chalmrest";
+import { fetchChalmrestCache } from "../services/cache";
 
 const fetchRouter = Router();
 fetchRouter.get("/", async (req: express.Request, res: express.Response) => {
-  const data = await fetchChalmrest();
+  const data = await fetchChalmrestCache();
   if (data === null) {
     res.send("No data");
     return;

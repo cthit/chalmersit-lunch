@@ -10,10 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const chalmrest_1 = require("../services/chalmrest");
+const cache_1 = require("../services/cache");
 const fetchRouter = (0, express_1.Router)();
 fetchRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const data = yield (0, chalmrest_1.fetchChalmrest)();
+    const data = yield (0, cache_1.fetchChalmrestCache)();
     if (data === null) {
         res.send("No data");
         return;
