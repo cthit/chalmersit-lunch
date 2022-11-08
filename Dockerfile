@@ -1,10 +1,10 @@
 FROM node:lts-alpine
 
 WORKDIR /app
-COPY package.json yarn.lock ./
+COPY package.json package-lock.json ./
 COPY . .
 RUN apk add --no-cache git
-RUN yarn install
-RUN yarn build
+RUN npm install
+RUN npm build
 EXPOSE 8080
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
