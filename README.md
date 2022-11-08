@@ -1,17 +1,15 @@
-# chalmersit-lunch fetcher
+# chalmersit-lunch
+Fetches and normalizes lunch data from different sources
 
-## Development setup:
+run with
 
-```bash
-  gem install bundler
-  bundle
-  ruby app.rb
+```
+docker compose up -d
 ```
 
+## Requirements
+ - Docker
 
-## Instructions for Docker
+## Contributors
 
-```bash
-  docker build -t cthit/lunch .
-  docker run --rm -p 3000:3000 cthit/lunch
-```
+- [@x183](https://github.com/x183/) Oscar 'saxen' Palm
