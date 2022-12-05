@@ -48,7 +48,7 @@ const getRestaurantData = async (url: string, location: string) => {
       query:
         "query MealQuery($mealProvidingUnitID: String, $startDate: String, $endDate: String) {\n dishOccurrencesByTimeRange(mealProvidingUnitID: $mealProvidingUnitID, startDate: $startDate, endDate: $endDate) {\n displayNames {\n sortOrder\n name\n categoryName\n }\n startDate\n dishType {\n name\n }\n mealProvidingUnit {\n mealProvidingUnitName\n id\n }\n }\n }",
       variables: {
-        mealProvidingUnitID: "21f31565-5c2b-4b47-d2a1-08d558129279",
+        mealProvidingUnitID: url,
         startDate: cDString,
         endDate: cDString,
       },
