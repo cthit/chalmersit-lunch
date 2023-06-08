@@ -81,13 +81,13 @@ const format = (json: any, location: string, currDate: string) => {
         title: element.dishType.name,
         lang: "sv",
         date: currDate,
-        summary: element.displayNames[1].name,
+        summary: element.displayNames.filter((unit: any) => unit.categoryName == "Swedish")[0].name,
       };
       const mealEN: food = {
         title: element.dishType.name,
         lang: "en",
         date: currDate,
-        summary: element.displayNames[0].name,
+        summary: element.displayNames.filter((unit: any) => unit.categoryName == "English")[0].name,
       };
       formatted.meals.sv.push(mealSE);
       formatted.meals.en.push(mealEN);
