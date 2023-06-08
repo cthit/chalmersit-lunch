@@ -77,7 +77,6 @@ const format = (json: any, location: string, currDate: string) => {
       location: location,
     };
     for (const element of json) {
-      console.log(element);
       const mealSE: food = {
         title: element.dishType.name,
         lang: "sv",
